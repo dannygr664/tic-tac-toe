@@ -47,6 +47,7 @@ export default function Game() {
   const [currentMove, setCurrentMove] = useState(0);
   const currentSquares = history[currentMove];
   const xIsNext = currentMove % 2 === 0;
+  const [isHistoryAsc, setIsHistoryAsc] = useState(true);
 
   function handlePlay(nextSquares) {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
@@ -56,6 +57,10 @@ export default function Game() {
 
   function jumpTo(nextMove) {
     setCurrentMove(nextMove);
+  }
+
+  function handleToggle() {
+    setIsHistoryAsc(!isHistoryAsc);
   }
 
   const moves = history.map((squares, move) => {
@@ -83,6 +88,7 @@ export default function Game() {
       </div>
       <div className="game-info">
         <ol>{moves}</ol>
+        <button onClick={handleToggle}>Toggle</button>
       </div>
     </div>
   )
