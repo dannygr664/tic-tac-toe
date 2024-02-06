@@ -63,8 +63,14 @@ export default function Game() {
     setIsHistoryAsc(!isHistoryAsc);
   }
 
-  const moves = history.map((squares, move) => {
+  const moves = history.map((squares, moveNum) => {
     let description;
+    let move;
+    if (isHistoryAsc) {
+      move = moveNum;
+    } else {
+      move = history.length - 1 - moveNum;
+    }
     if (move === currentMove) {
       description = 'You are at move #' + move;
     } else if (move > 0) {
